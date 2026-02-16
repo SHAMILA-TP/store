@@ -1,4 +1,6 @@
-name: CI/CD - Build image artifact and push
+git add .github/workflows/ci-cd.yml
+git commit -m "Use upload/download-artifact@v4 to fix deprecated action"
+git pushname: CI/CD - Build image artifact and push
 
 on:
   push:
@@ -51,7 +53,7 @@ jobs:
           docker save "$IMAGE" -o image.tar
 
       - name: Upload docker image artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: docker-image
           path: image.tar
@@ -62,7 +64,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Download docker image artifact
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: docker-image
           path: .
